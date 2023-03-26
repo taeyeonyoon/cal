@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val ca : TextView = findViewById(R.id.cancel)
         val minus : TextView = findViewById(R.id.minus)
         val result : TextView = findViewById(R.id.result)
-
+        val cal  : TextView= findViewById(R.id.cal)
         var new = "0"
         var old = "0"
 
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             result.setText("0")
         }
         minus.setOnClickListener {
-            old = ((old.toInt()) - new.toInt()).toString()
+            old = (old.toInt() + new.toInt()).toString()
             new = "0"
             result.setText(old)
         }
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
             result.setText(old)
 
         }
-        result.setOnClickListener {
+        cal.setOnClickListener {
             old = (old.toInt() + new.toInt()).toString()
             new = "0"
             result.setText(old)
