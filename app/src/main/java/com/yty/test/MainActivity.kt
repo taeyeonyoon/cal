@@ -29,78 +29,75 @@ class MainActivity : AppCompatActivity() {
         var new = "0"
         var old = "0"
 
+
+
         one.setOnClickListener{
-            new = new + "1"
-            result.setText(new)
+            new = "1"
+            result.text = new
         }
 
         two.setOnClickListener{
-            new = new + "2"
-            result.setText(new)
+            new = "2"
+            result.text = new
         }
 
         three.setOnClickListener{
-            new = new + "3"
-            result.setText(new)
+            new = "3"
+            result.text = new
         }
 
         four.setOnClickListener{
-            new = new + "4"
-            result.setText(new)
+            new = "4"
+            result.text = new
         }
 
         five.setOnClickListener{
-            new = new + "5"
-            result.setText(new)
+            new = "5"
+            result.text = new
         }
 
         six.setOnClickListener{
-            new = new + "6"
-            result.setText(new)
+            new = "6"
+            result.text = new
         }
 
         seven.setOnClickListener{
-            new = new + "7"
-            result.setText(new)
+            new = "7"
+            result.text = new
         }
 
         eight.setOnClickListener{
-            new = new + "8"
-            result.setText(new)
+            new = "8"
+            result.text = new
         }
 
         nine.setOnClickListener{
-            new = new + "9"
-            result.setText(new)
+            new = "9"
+            result.text = new
         }
 
         zero.setOnClickListener{
-            new = new + "0"
-            result.setText(new)
+            new = "0"
+            result.text = new
         }
 
 
         ca.setOnClickListener {
             new = "0"
             old = "0"
-            result.setText("0")
+            result.text = "0"
         }
         minus.setOnClickListener {
-            old = (old.toLong() - new.toLong()).toString()
-            new = "0"
-            result.setText(old)
+            old = (old.toInt() - new.toInt()).toString()
+            result.text = old
         }
         plus.setOnClickListener {
             old = (old.toInt() + new.toInt()).toString()
-            new = "0"
-            result.setText(old)
-
+            result.text = old
         }
         cal.setOnClickListener {
             old = (old.toInt() + new.toInt()).toString()
-            new = "0"
-            result.setText(old)
-
+            result.text = old
         }
     }
 }
