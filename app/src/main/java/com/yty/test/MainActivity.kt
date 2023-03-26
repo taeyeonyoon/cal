@@ -26,76 +26,78 @@ class MainActivity : AppCompatActivity() {
         val minus : TextView = findViewById(R.id.minus)
         val result : TextView = findViewById(R.id.result)
         val cal  : TextView= findViewById(R.id.cal)
-        var ytyres = "0"
+        var ytynew = "0"
+        var ytyold = "0"
 
 
 
         one.setOnClickListener{
-            ytyres = "1"
-            result.text = ytyres
+            ytynew = "1"
+            result.text = ytynew
         }
 
         two.setOnClickListener{
-            ytyres = "2"
-            result.text = ytyres
+            ytynew = "2"
+            result.text = ytynew
         }
 
         three.setOnClickListener{
-            ytyres = "3"
-            result.text = ytyres
+            ytynew = "3"
+            result.text = ytynew
         }
 
         four.setOnClickListener{
-            ytyres = "4"
-            result.text = ytyres
+            ytynew = "4"
+            result.text = ytynew
         }
 
         five.setOnClickListener{
-            ytyres = "5"
-            result.text = ytyres
+            ytynew = "5"
+            result.text = ytynew
         }
 
         six.setOnClickListener{
-            ytyres = "6"
-            result.text = ytyres
+            ytynew = "6"
+            result.text = ytynew
         }
 
         seven.setOnClickListener{
-            ytyres = "7"
-            result.text = ytyres
+            ytynew = "7"
+            result.text = ytynew
         }
 
         eight.setOnClickListener{
-            ytyres = "8"
-            result.text = ytyres
+            ytynew = "8"
+            result.text = ytynew
         }
 
         nine.setOnClickListener{
-            ytyres = "9"
-            result.text = ytyres
+            ytynew = "9"
+            result.text = ytynew
         }
 
         zero.setOnClickListener{
-            ytyres = "0"
-            result.text = ytyres
+            ytynew = "0"
+            result.text = ytynew
         }
 
 
         ca.setOnClickListener {
-            ytyres = "0"
+            ytynew = "0"
+            ytyold = "0"
             result.text = "0"
         }
         minus.setOnClickListener {
-            ytyres = (ytyold.toInt() - ytynew.toInt()).toString()
-            result.text = ytyres
+            ytyold = (ytyold.toInt() - ytynew.toInt()).toString()
+            result.text = ytyold
         }
         plus.setOnClickListener {
-            ytyres = (ytyold.toInt() + ytynew.toInt()).toString()
-            result.text = ytyres
+            ytyold = (ytyold.toInt() + ytynew.toInt()).toString()
+            result.text = ytyold
         }
         cal.setOnClickListener {
-            ytyres = (ytyold.toInt() + ytynew.toInt()).toString()
-            result.text = ytyres
+            ytyold = (ytyold.toInt() + ytynew.toInt()).toString()
+            result.text = ytyold
         }
     }
 }
