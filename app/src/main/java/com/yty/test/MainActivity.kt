@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
             result.setText("0")
         }
         minus.setOnClickListener {
-            old = (old.toInt() + new.toInt()).toString()
+            old = (old.toLong() - new.toLong()).toString()
             new = "0"
             result.setText(old)
         }
