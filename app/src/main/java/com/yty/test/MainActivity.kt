@@ -1,103 +1,83 @@
 package com.yty.test
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
-    @SuppressLint("SetTextI18n", "MissingInflatedId")
+class MainActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var textView: TextView
+    private var firstNumber: Int = 0
+    private var secondNumber: Int = 0
+    private var operation: String = ""
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val one : TextView = findViewById(R.id.one)
-        val two : TextView = findViewById(R.id.two)
-        val three  : TextView = findViewById(R.id.three)
-        val four  : TextView = findViewById(R.id.four)
-        val five : TextView = findViewById(R.id.five)
-        val six : TextView = findViewById(R.id.six)
-        val seven : TextView = findViewById(R.id.seven)
-        val eight : TextView = findViewById(R.id.eight)
-        val nine : TextView = findViewById(R.id.nine)
-        val zero : TextView = findViewById(R.id.zero)
-        val plus : TextView = findViewById(R.id.plus)
-        val ca : TextView = findViewById(R.id.cancel)
-        val minus : TextView = findViewById(R.id.minus)
-        val result : TextView = findViewById(R.id.result)
-        val cal  : TextView= findViewById(R.id.cal)
-        var ytynew = "0"
-        var ytyold = "0"
+        textView = findViewById(R.id.result)
+        findViewById<TextView>(R.id.zero).setOnClickListener(this)
+        findViewById<TextView>(R.id.one).setOnClickListener(this)
+        findViewById<TextView>(R.id.two).setOnClickListener(this)
+        findViewById<TextView>(R.id.three).setOnClickListener(this)
+        findViewById<TextView>(R.id.four).setOnClickListener(this)
+        findViewById<TextView>(R.id.five).setOnClickListener(this)
+        findViewById<TextView>(R.id.six).setOnClickListener(this)
+        findViewById<TextView>(R.id.seven).setOnClickListener(this)
+        findViewById<TextView>(R.id.eight).setOnClickListener(this)
+        findViewById<TextView>(R.id.nine).setOnClickListener(this)
 
+        findViewById<TextView>(R.id.plus).setOnClickListener { operationClick("+") }
+        findViewById<TextView>(R.id.minus).setOnClickListener { operationClick("-") }
+        findViewById<TextView>(R.id.multi).setOnClickListener { operationClick("*") }
+        findViewById<TextView>(R.id.divide).setOnClickListener { operationClick("/") }
 
-
-        one.setOnClickListener{
-            ytynew = "1"
-            result.text = ytynew
+        findViewById<TextView>(R.id.cal).setOnClickListener {
+            val result = calculate()
+            textView.text = result.toString()
+            firstNumber = result
+            secondNumber = 0
+            operation = ""
         }
+        findViewById<TextView>(R.id.cancel).setOnClickListener {
+            textView.text = "0"
+            firstNumber = 0
+            secondNumber = 0
+            operation = ""
+        }
+    }
 
-        two.setOnClickListener{
-            ytynew = "2"
-            result.text = ytynew
-        }
+    override fun onClick(view: View?) {
+        val number = (view as TextView).text.toString().toInt()
+        val text = textView.text.toString()
 
-        three.setOnClickListener{
-            ytynew = "3"
-            result.text = ytynew
-        }
+        textView.text = if (text == "0") number.toString() else "$text$number"
 
-        four.setOnClickListener{
-            ytynew = "4"
-            result.text = ytynew
+        if (operation.isEmpty()) {
+            firstNumber = textView.text.toString().toInt()
+        } else {
+            secondNumber = textView.text.toString().toInt()
         }
+    }
 
-        five.setOnClickListener{
-            ytynew = "5"
-            result.text = ytynew
+    private fun operationClick(op: String) {
+        if (operation.isNotEmpty() && secondNumber != 0) {
+            firstNumber = calculate()
+            secondNumber = 0
         }
+        operation = op
+        textView.text = "0"
+    }
 
-        six.setOnClickListener{
-            ytynew = "6"
-            result.text = ytynew
-        }
-
-        seven.setOnClickListener{
-            ytynew = "7"
-            result.text = ytynew
-        }
-
-        eight.setOnClickListener{
-            ytynew = "8"
-            result.text = ytynew
-        }
-
-        nine.setOnClickListener{
-            ytynew = "9"
-            result.text = ytynew
-        }
-
-        zero.setOnClickListener{
-            ytynew = "0"
-            result.text = ytynew
-        }
-
-
-        ca.setOnClickListener {
-            ytynew = "0"
-            ytyold = "0"
-            result.text = "0"
-        }
-        minus.setOnClickListener {
-            ytyold = (ytyold.toInt() - ytynew.toInt()).toString()
-            result.text = ytyold
-        }
-        plus.setOnClickListener {
-            ytyold = (ytyold.toInt() + ytynew.toInt()).toString()
-            result.text = ytyold
-        }
-        cal.setOnClickListener {
-            ytyold = (ytyold.toInt() + ytynew.toInt()).toString()
-            result.text = ytyold
+    private fun calculate(): Int {
+        return when (operation) {
+            "+" -> firstNumber + secondNumber
+            "-" -> firstNumber - secondNumber
+            "*" -> firstNumber * secondNumber
+            "/" -> firstNumber / secondNumber
+            else -> 0
         }
     }
 }
